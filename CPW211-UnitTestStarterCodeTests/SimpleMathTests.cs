@@ -18,27 +18,79 @@ namespace CPW211_UnitTestStarterCode.Tests
         [DataRow(0, -0)]
         public void Add_TwoNumbers_ReturnsSum(double num1, double num2)
         {
-            // Use the DataRow values to test the Add method
-            Assert.Fail();
+            //arrange
+            double expected = num1 + num2;
+
+            //act
+            double actual = SimpleMath.Add(num1, num2);
+
+            //assert
+            Assert.AreEqual(expected: expected, actual, "num1:<{0}> num2:<{1}>", new object[] { num1, num2 });
         }
 
         [TestMethod]
-        public void Multiply_TwoNumbers_ReturnsProduct()
+        [DataRow(5, 10)]
+        [DataRow(0, 100)]
+        [DataRow(-1, -10)]
+        [DataRow(0, -0)]
+        public void Multiply_TwoNumbers_ReturnsProduct(double num1, double num2)
         {
-            // Use a few pairs of values to test the Multiply method
-            Assert.Fail();
+            //arrange
+            double expected = num1 * num2;
+
+            //act
+            double actual = SimpleMath.Multiply(num1, num2);
+
+            //assert
+            Assert.AreEqual(expected: expected, actual, "num1:<{0}> num2:<{1}>", new object[] { num1, num2 });
         }
 
         [TestMethod]
         public void Divide_DenominatorZero_ThrowsArgumentException()
         {
-            // Divide by zero should throw an argument exception with a message
-            // "Denominator cannot be zero"
-            Assert.Fail();
+            //arrange
+            string expectedMessage = "Denominator cannot be zero";
+
+            //act
+            var ex = Assert.ThrowsException<ArithmeticException>(() => SimpleMath.Divide(100, 0));
+            
+            //assert
+            Assert.AreEqual(ex.Message, expectedMessage);
+                
         }
 
-        // TODO: Test Divide method with two valid numbers
+        [TestMethod]
+        [DataRow(5, 10)]
+        [DataRow(0, 100)]
+        [DataRow(-1, -10)]
+        [DataRow(100, -10)]
+        public void Divide_TwoNumbers_ReturnsProduct(double num1, double num2)
+        {
+            //arrange
+            double expected = num1 / num2;
 
-        // TODO: Test subtract method with two valid numbers
+            //act
+            double actual = SimpleMath.Divide(num1, num2);
+
+            //assert
+            Assert.AreEqual(expected: expected, actual, "num1:<{0}> num2:<{1}>", new object[] { num1, num2 });
+        }
+        
+        [TestMethod]
+        [DataRow(5, 10)]
+        [DataRow(0, 100)]
+        [DataRow(-1, -10)]
+        [DataRow(100, -10)]
+        public void Subtract_TwoNumbers_ReturnsProduct(double num1, double num2)
+        { 
+            //arrange
+            double expected = num1 - num2;
+
+            //act
+            double actual = SimpleMath.Subtract(num1, num2);
+
+            //assert
+            Assert.AreEqual(expected: expected, actual, "num1:<{0}> num2:<{1}>", new object[] { num1, num2 });
+        }
     }
 }
